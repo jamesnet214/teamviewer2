@@ -1,19 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <Folder Include="UI\Units\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Forms\TeamViewer2.Forms.csproj" />
-    <ProjectReference Include="..\TeamViewer2.UserBox\TeamViewer2.UserBox.csproj" />
   </ItemGroup>
 
 </Project>

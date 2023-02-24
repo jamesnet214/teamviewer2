@@ -12,17 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamViewer2.Core;
 
-namespace TeamViewer2
+namespace TeamViewer2.UserBox.UI.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public class UniformContent : PrismContent
     {
-        public MainWindow()
+        static UniformContent()
         {
-            InitializeComponent();
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(UniformContent), new FrameworkPropertyMetadata(typeof(UniformContent)));
         }
     }
 }
