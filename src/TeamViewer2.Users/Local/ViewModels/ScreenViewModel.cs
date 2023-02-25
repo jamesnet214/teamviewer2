@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace TeamViewer2.UserBox.Local.ViewModels
+namespace TeamViewer2.Users.Local.ViewModels
 {
     public partial class ScreenViewModel : ObservableObject
     {

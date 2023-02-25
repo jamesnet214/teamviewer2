@@ -5,7 +5,8 @@ using Prism.Ioc;
 using Prism.Regions;
 using System.Windows.Media.Imaging;
 using TeamViewer2.Core;
-using TeamViewer2.Forms.Local.Models;
+using TeamViewer2.Core.Events;
+using TeamViewer2.Core.Models;
 
 namespace TeamViewer2.Forms.Local.ViewModels
 {
@@ -14,6 +15,7 @@ namespace TeamViewer2.Forms.Local.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IContainerExtension _container;
         private readonly IEventAggregator _ea;
+        private UserModel _userInfo;
 
         public MainContentViewModel(IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
         {
@@ -30,32 +32,34 @@ namespace TeamViewer2.Forms.Local.ViewModels
             _regionManager.RegisterViewWithRegion("HostRegion", ContentName.HostContent);
 
             IRegion region = _regionManager.Regions["UniformRegion"];
-            var uniformContent = _container.Resolve<PrismContent>(ContentName.UniformContent); 
+            PrismContent uniformContent = _container.Resolve<PrismContent>(ContentName.UniformContent); 
             
             if (!region.Views.Contains(uniformContent))
             {
                 region.Add(uniformContent);
             }
-
             region.Activate(uniformContent);
+
+            _ea.GetEvent<InitializeCurrentUserEvent>().Publish(_userInfo);
         }
 
         [RelayCommand]
         private void PreviewKeyDown(BitmapSource bi)
         {
-            _ea.GetEvent<PubSubEvent<BitmapSource>>().Publish(bi);  
+            _ea.GetEvent<CopiedImageSendEvent>().Publish(bi);  
         }
 
-        private void LoginCompleted(UserModel info)
+        private void LoginCompleted(UserModel userInfo)
         {
+            _userInfo = userInfo;
+
             IRegion region = _regionManager.Regions["MainRegion"];
-            var main = _container.Resolve<PrismContent>(ContentName.MainContent);
+            PrismContent main = _container.Resolve<PrismContent>(ContentName.MainContent);
 
             if (!region.Views.Contains(main))
             {
                 region.Add(main);
             }
-
             region.Activate(main);
         }
     }

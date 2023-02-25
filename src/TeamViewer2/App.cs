@@ -9,8 +9,8 @@ using System.Windows;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.Local.ViewModels;
 using TeamViewer2.Forms.UI.Views;
-using TeamViewer2.UserBox.Local.ViewModels;
-using TeamViewer2.UserBox.UI.Views;
+using TeamViewer2.Users.Local.ViewModels;
+using TeamViewer2.Users.UI.Views;
 
 namespace TeamViewer2
 {

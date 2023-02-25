@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace TeamViewer2.UserBox.Local.Converters
+namespace TeamViewer2.Users.Local.Converters
 {
     public class RatioConverter : IValueConverter
     {

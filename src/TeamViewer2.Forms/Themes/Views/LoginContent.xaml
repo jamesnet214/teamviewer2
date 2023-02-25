@@ -18,8 +18,8 @@
                                 Background="#ffffff"
                                 BorderBrush="#151515"
                                 BorderThickness="1"
-                                Padding="40"
-                                MinWidth="400">
+                                Padding="20"
+                                MinWidth="300">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -33,16 +33,46 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Content="Name:" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+                                <Label Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       Content="Name" 
+                                       Margin="1"/>
+                                <TextBox Grid.Row="0" 
+                                         Grid.Column="1" 
+                                         Text="{Binding Name}" 
+                                         Margin="1"
+                                         Padding="4 2 4 2"
+                                         VerticalContentAlignment="Center"/>
 
-                                <Label Content="ID:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding Id}" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+                                <Label Grid.Row="1" 
+                                       Grid.Column="0" 
+                                       Content="ID" 
+                                       Margin="1"/>
+                                <TextBox Grid.Row="1" 
+                                         Grid.Column="1" 
+                                         Text="{Binding Id}" 
+                                         Margin="1"
+                                         Padding="4 2 4 2"
+                                         VerticalContentAlignment="Center"/>
 
-                                <Label Content="Seat:" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-                                <TextBox Text="{Binding Seat}" Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+                                <Label Grid.Row="2" 
+                                       Grid.Column="0" 
+                                       Content="Seat" 
+                                       Margin="1"/>
+                                <TextBox Grid.Row="2" 
+                                         Grid.Column="1" 
+                                         Text="{Binding Seat}" 
+                                         Margin="1"
+                                         Padding="4 2 4 2"
+                                         VerticalContentAlignment="Center"/>
 
-                                <Button Content="Save" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Command="{Binding LoginCommand}"/>
+                                <Button Grid.Row="3" 
+                                        Grid.Column="1" 
+                                        Content="Login"                                         
+                                        Margin="1 4 1 4"
+                                        Padding="6 4 6 4"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding LoginCommand}"/>
                             </Grid>
                         </Border>
                     </Border>

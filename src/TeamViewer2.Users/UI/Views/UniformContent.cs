@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeamViewer2.Core;
 
-namespace TeamViewer2.UserBox.UI.Views
+namespace TeamViewer2.Users.UI.Views
 {
     public class UniformContent : PrismContent
     {

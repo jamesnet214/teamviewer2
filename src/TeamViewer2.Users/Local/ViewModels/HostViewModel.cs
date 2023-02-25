@@ -7,25 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace TeamViewer2.UserBox.Local.ViewModels
+namespace TeamViewer2.Users.Local.ViewModels
 {
-    public partial class CurrentViewModel : ObservableObject
+    public partial class HostViewModel : ObservableObject
     {
         private readonly IEventAggregator _ea;
 
         [ObservableProperty]
         private BitmapSource _captureImage;
 
-        public CurrentViewModel(IEventAggregator ea) 
+        public HostViewModel(IEventAggregator ea) 
         {
             _ea = ea;
-
-            _ea.GetEvent<PubSubEvent<BitmapSource>>().Subscribe(ImageCopied);
-        }
-
-        private void ImageCopied(BitmapSource obj)
-        {
-            CaptureImage = obj;
         }
     }
 }

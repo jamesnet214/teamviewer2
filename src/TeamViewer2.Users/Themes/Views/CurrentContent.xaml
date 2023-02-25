@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:views="clr-namespace:TeamViewer2.UserBox.UI.Views">
+    xmlns:views="clr-namespace:TeamViewer2.Users.UI.Views">
 
     <Style TargetType="{x:Type views:CurrentContent}">
         <Setter Property="Margin" Value="2"/>
@@ -15,9 +15,17 @@
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Image Source="{Binding CaptureImage}" Margin="50"/>
-                            <TextBlock Text="이재웅 Jamesnet"
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding UserInfo.Name}"
                                        Foreground="#FFFFFF"
-                                       Margin="10"/>
+                                       FontSize="18"
+                                       Margin="10 10 0 10"/>
+
+                                <TextBlock Text="{Binding UserInfo.Id, StringFormat={}({0})}"
+                                       Foreground="#FFFFFF"
+                                       FontSize="18"
+                                       Margin="4 10 10 10"/>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </ControlTemplate>

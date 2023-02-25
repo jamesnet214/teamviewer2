@@ -6,7 +6,7 @@ using Prism.Regions;
 using System.Windows;
 using System.Xml.Linq;
 using TeamViewer2.Core;
-using TeamViewer2.Forms.Local.Models;
+using TeamViewer2.Core.Models;
 
 namespace TeamViewer2.Forms.Local.ViewModels
 {
