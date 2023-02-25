@@ -13,9 +13,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
-                            <based:PrismRegion RegionName="MainRegion"/>
-                        </Grid>
+                        <based:PrismRegion RegionName="MainRegion"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
