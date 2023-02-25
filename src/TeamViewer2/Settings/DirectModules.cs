@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamViewer2.Core;
 using TeamViewer2.Forms.UI.Views;
 
 namespace TeamViewer2.Settings
@@ -15,8 +16,8 @@ namespace TeamViewer2.Settings
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(LoginContent));
+            IRegionManager regionManager = containerProvider.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion("MainRegion", ContentName.LoginContent);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

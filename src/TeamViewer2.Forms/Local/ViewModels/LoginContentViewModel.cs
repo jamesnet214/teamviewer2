@@ -4,10 +4,9 @@ using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
 using System.Windows;
-using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.Local.Models;
-using TeamViewer2.Forms.UI.Views;
 
 namespace TeamViewer2.Forms.Local.ViewModels
 {
@@ -41,19 +40,16 @@ namespace TeamViewer2.Forms.Local.ViewModels
         [RelayCommand]
         private void Login()
         {
-            IRegion region = _regionManager.Regions["MainRegion"];
-            var uniformContent = _container.Resolve<PrismContent>(ContentName.MainContent);
-            var d2 = _container.Resolve<PrismContent>(ContentName.MainContent);
+            LoginVisibility = Visibility.Collapsed;
 
-            if (!region.Views.Contains(uniformContent))
+            UserModel loginInfo = new UserModel
             {
-                region.Add(uniformContent);
-            }
+                Id = Id,
+                Name = Name,
+                Seat = int.Parse(Seat)
+            };
 
-            region.Activate(uniformContent);
-
-            //LoginVisibility = Visibility.Collapsed;
-            //_ea.GetEvent<PubSubEvent<UserModel>>().Publish(new UserModel { Id = Id, Name = Name, Seat = int.Parse(Seat)});
+            _ea.GetEvent<PubSubEvent<UserModel>>().Publish(loginInfo);
         }
     }
 }

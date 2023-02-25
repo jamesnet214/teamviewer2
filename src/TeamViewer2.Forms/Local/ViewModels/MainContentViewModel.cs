@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
-using System.Windows;
 using System.Windows.Media.Imaging;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.Local.Models;
@@ -15,9 +14,6 @@ namespace TeamViewer2.Forms.Local.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IContainerExtension _container;
         private readonly IEventAggregator _ea;
-
-        [ObservableProperty]
-        private Visibility _loginVisibility;
 
         public MainContentViewModel(IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
         {
@@ -51,8 +47,16 @@ namespace TeamViewer2.Forms.Local.ViewModels
         }
 
         private void LoginCompleted(UserModel info)
-        { 
-            //LoginVisibility = Visibility.Collapsed;
+        {
+            IRegion region = _regionManager.Regions["MainRegion"];
+            var main = _container.Resolve<PrismContent>(ContentName.MainContent);
+
+            if (!region.Views.Contains(main))
+            {
+                region.Add(main);
+            }
+
+            region.Activate(main);
         }
     }
 }
