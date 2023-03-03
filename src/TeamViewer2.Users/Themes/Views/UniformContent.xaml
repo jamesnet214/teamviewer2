@@ -14,9 +14,8 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <UniformGrid Grid.Column="1" Columns="6" Rows="5">
+                            <UniformGrid Grid.Column="1" Columns="12">
                                 <views:ScreenContent/>
                                 <views:ScreenContent/>
                                 <views:ScreenContent/>

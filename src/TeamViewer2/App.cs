@@ -31,8 +31,7 @@ namespace TeamViewer2
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<PrismContent, LoginContent>(ContentName.LoginContent);
-            containerRegistry.RegisterInstance<PrismContent>(new MainContent(), ContentName.MainContent);
-
+            containerRegistry.RegisterSingleton<PrismContent, MainContent>(ContentName.MainContent);
             containerRegistry.RegisterSingleton<PrismContent, UniformContent>(ContentName.UniformContent);
             containerRegistry.RegisterSingleton<PrismContent, CurrentContent>(ContentName.CurrentContent);
             containerRegistry.RegisterSingleton<PrismContent, HostContent>(ContentName.HostContent);

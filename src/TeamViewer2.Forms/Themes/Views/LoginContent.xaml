@@ -5,7 +5,6 @@
     xmlns:views="clr-namespace:TeamViewer2.Forms.UI.Views">
 
     <Style TargetType="{x:Type views:LoginContent}">
-        <Setter Property="Visibility" Value="{Binding LoginVisibility}"/>
         <Setter Property="Background" Value="#AA000000"/>
         <Setter Property="Template">
             <Setter.Value>

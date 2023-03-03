@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TeamViewer2.Chat": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63574;http://localhost:63575"
+    }
+  }
+}

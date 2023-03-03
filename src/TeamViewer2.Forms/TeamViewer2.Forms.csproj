@@ -13,10 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="SignalR.EasyUse.Client" Version="0.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Core\TeamViewer2.Core.csproj" />
+    <ProjectReference Include="..\TeamViewer2.Receiver\TeamViewer2.Receiver.csproj" />
   </ItemGroup>
 
 </Project>

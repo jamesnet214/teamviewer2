@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TeamViewer2.Core;
 using TeamViewer2.Core.Events;
@@ -28,19 +30,26 @@ namespace TeamViewer2.Forms.Local.ViewModels
 
         public void OnLoaded(PrismContent view)
         {
-            _regionManager.RegisterViewWithRegion("CurrentRegion", ContentName.CurrentContent);
-            _regionManager.RegisterViewWithRegion("HostRegion", ContentName.HostContent);
-
-            IRegion region = _regionManager.Regions["UniformRegion"];
-            PrismContent uniformContent = _container.Resolve<PrismContent>(ContentName.UniformContent); 
-            
-            if (!region.Views.Contains(uniformContent))
+            if (Window.GetWindow(view) is Window win)
             {
-                region.Add(uniformContent);
+                win.PreviewKeyDown += Win_PreviewKeyDown;
             }
-            region.Activate(uniformContent);
-
             _ea.GetEvent<InitializeCurrentUserEvent>().Publish(_userInfo);
+        }
+
+        private void Win_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.V && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                if (Clipboard.ContainsImage())
+                {
+                    //string clipboardText = Clipboard.GetText();
+                    // 클립보드에서 텍스트 데이터 가져오기
+
+                    BitmapSource clipboardImage = Clipboard.GetImage();
+                    PreviewKeyDownCommand?.Execute(clipboardImage);
+                }
+            }
         }
 
         [RelayCommand]
@@ -52,15 +61,6 @@ namespace TeamViewer2.Forms.Local.ViewModels
         private void LoginCompleted(UserModel userInfo)
         {
             _userInfo = userInfo;
-
-            IRegion region = _regionManager.Regions["MainRegion"];
-            PrismContent main = _container.Resolve<PrismContent>(ContentName.MainContent);
-
-            if (!region.Views.Contains(main))
-            {
-                region.Add(main);
-            }
-            region.Activate(main);
         }
     }
 }
