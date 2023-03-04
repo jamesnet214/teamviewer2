@@ -70,6 +70,7 @@ namespace TeamViewer2.Forms.Local.ViewModels
             loginInfo = userInfo;
             await _hubManager.Connection.InvokeAsync("SendMessage", loginInfo);
         }
+
         public static string BitmapSourceToBase64(BitmapSource bitmapSource)
         {
             var encoder = new PngBitmapEncoder();

@@ -23,7 +23,8 @@
                             <Image Source="{Binding SnapShot}" 
                                    Stretch="Uniform"/>
                             <TextBlock Text="{Binding UserInfo.Name}"
-                                       Foreground="#55FFFFFF"
+                                       Foreground="#FFFFFF"
+                                       FontSize="15"
                                        Margin="10"/>
                         </Grid>
                     </Border>
