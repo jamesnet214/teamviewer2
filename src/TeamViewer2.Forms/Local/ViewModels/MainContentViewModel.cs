@@ -1,66 +1,85 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.AspNetCore.SignalR.Client;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
+using System.IO;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TeamViewer2.Core;
 using TeamViewer2.Core.Events;
 using TeamViewer2.Core.Models;
+using TeamViewer2.Receiver;
 
 namespace TeamViewer2.Forms.Local.ViewModels
 {
     public partial class MainContentViewModel : ObservableObject, IViewLoadable
     {
+        private readonly HubManager _hubManager;
         private readonly IRegionManager _regionManager;
         private readonly IContainerExtension _container;
         private readonly IEventAggregator _ea;
-        private UserModel _userInfo;
+        private MessageModel loginInfo { get; set; }
 
-        public MainContentViewModel(IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
+        public MainContentViewModel(HubManager hubManager, IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
         {
+            _hubManager = hubManager;
             _regionManager = regionManager;
             _container = container;
             _ea = ea;
 
-            _ea.GetEvent<PubSubEvent<UserModel>>().Subscribe(LoginCompleted);
+            _ea.GetEvent<LoginCompletedEvent>().Subscribe(LoginCompleted);
         }
 
         public void OnLoaded(PrismContent view)
         {
-            if (Window.GetWindow(view) is Window win)
-            {
-                win.PreviewKeyDown += Win_PreviewKeyDown;
-            }
-            _ea.GetEvent<InitializeCurrentUserEvent>().Publish(_userInfo);
-        }
+            IRegion contentRegion = _regionManager.Regions["CurrentRegion"];
+            PrismContent currentContent = _container.Resolve<PrismContent>(ContentName.CurrentContent);
 
-        private void Win_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.V && Keyboard.Modifiers == ModifierKeys.Control)
+            if (!contentRegion.Views.Contains(currentContent))
             {
-                if (Clipboard.ContainsImage())
-                {
-                    //string clipboardText = Clipboard.GetText();
-                    // 클립보드에서 텍스트 데이터 가져오기
-
-                    BitmapSource clipboardImage = Clipboard.GetImage();
-                    PreviewKeyDownCommand?.Execute(clipboardImage);
-                }
+                contentRegion.Add(currentContent);
             }
+            contentRegion.Activate(currentContent);
+
+            IRegion uniformRegion = _regionManager.Regions["UniformRegion"];
+            PrismContent uniformContent = _container.Resolve<PrismContent>(ContentName.UniformContent);
+
+            if (!uniformRegion.Views.Contains(uniformContent))
+            {
+                uniformRegion.Add(uniformContent);
+            }
+            uniformRegion.Activate(uniformContent);
+
+            _ea.GetEvent<InitializeCurrentUserEvent>().Publish(loginInfo.UserInfo);
         }
 
         [RelayCommand]
-        private void PreviewKeyDown(BitmapSource bi)
+        private async void ImageCapture(BitmapSource bi)
         {
-            _ea.GetEvent<CopiedImageSendEvent>().Publish(bi);  
+            _ea.GetEvent<CopiedImageSendEvent>().Publish(bi);
+            loginInfo.Raw = BitmapSourceToBase64(bi);
+            await _hubManager.Connection.InvokeAsync("SendMessage", loginInfo);
         }
 
-        private void LoginCompleted(UserModel userInfo)
+        private async void LoginCompleted(MessageModel userInfo)
         {
-            _userInfo = userInfo;
+            loginInfo = userInfo;
+            await _hubManager.Connection.InvokeAsync("SendMessage", loginInfo);
+        }
+        public static string BitmapSourceToBase64(BitmapSource bitmapSource)
+        {
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                return Convert.ToBase64String(stream.ToArray());
+            }
         }
     }
 }

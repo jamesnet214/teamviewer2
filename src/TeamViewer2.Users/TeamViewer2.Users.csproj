@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UI\Units\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Forms\TeamViewer2.Forms.csproj" />
   </ItemGroup>
 

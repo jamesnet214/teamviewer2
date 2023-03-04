@@ -8,6 +8,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="SignalR.EasyUse.Client" Version="0.2.1" />
   </ItemGroup>
   

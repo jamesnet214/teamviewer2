@@ -2,9 +2,7 @@
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.Local.ViewModels;
@@ -31,10 +29,10 @@ namespace TeamViewer2
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<PrismContent, LoginContent>(ContentName.LoginContent);
-            containerRegistry.RegisterSingleton<PrismContent, MainContent>(ContentName.MainContent);
-            containerRegistry.RegisterSingleton<PrismContent, UniformContent>(ContentName.UniformContent);
-            containerRegistry.RegisterSingleton<PrismContent, CurrentContent>(ContentName.CurrentContent);
-            containerRegistry.RegisterSingleton<PrismContent, HostContent>(ContentName.HostContent);
+            containerRegistry.RegisterInstance<PrismContent>(new MainContent(), ContentName.MainContent);
+            containerRegistry.RegisterInstance<PrismContent>(new UniformContent(), ContentName.UniformContent);
+            containerRegistry.RegisterInstance<PrismContent>(new CurrentContent(), ContentName.CurrentContent);
+            containerRegistry.RegisterInstance<PrismContent>(new HostContent(), ContentName.HostContent);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -53,6 +51,7 @@ namespace TeamViewer2
             ViewModelLocationProvider.Register<ScreenContent, ScreenViewModel>();
             ViewModelLocationProvider.Register<CurrentContent, CurrentViewModel>();
             ViewModelLocationProvider.Register<HostContent, HostViewModel>();
+            ViewModelLocationProvider.Register<UniformContent, UniformViewModel>();
 
             return this;
         }

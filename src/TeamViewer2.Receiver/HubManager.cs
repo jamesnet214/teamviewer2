@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Prism.Events;
 using System.Windows;
 using TeamViewer2.Core.Models;
 
@@ -7,6 +8,9 @@ namespace TeamViewer2.Receiver
     public class HubManager
     {
         public HubConnection Connection;
+        private IEventAggregator _ea;
+
+        public int Test { get; private set; }
 
         public static HubManager Create()
         {
@@ -18,14 +22,17 @@ namespace TeamViewer2.Receiver
             return hubManager;
         }
 
-        public async void Start()
+        public async void Start(IEventAggregator ea)
         {
+            _ea = ea;
+
+            Test = 113;
+
             Connection.On<MessageModel>("ResponseMessagePack", (message) =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var newMessage = $"{message.UserInfo.Name}\n{message.DataType}";
-                    //Messages.Add(new MessageModel(newMessage));
+                    _ea.GetEvent<PubSubEvent<MessageModel>>().Publish(message);
                 });
             });
 

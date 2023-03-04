@@ -6,7 +6,7 @@
 
     <Style TargetType="{x:Type views:MainContent}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="PreviewKeyDownCommand" Value="{Binding PreviewKeyDownCommand}"/>
+        <Setter Property="PreviewKeyDownCommand" Value="{Binding ImageCaptureCommand}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:MainContent}">
@@ -18,13 +18,10 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <based:PrismRegion RegionName="CurrentRegion"/>
-                            <based:PrismRegion RegionName="HostRegion"
-                                               VerticalAlignment="Top"
-                                               HorizontalAlignment="Right"/>
-                            <based:PrismRegion Grid.Row="1" 
-                                               RegionName="UniformRegion" 
-                                               VerticalAlignment="Bottom"/>
+                            <based:PrismRegion Grid.Row="0" 
+                                               RegionName="CurrentRegion"/>
+                            <based:PrismRegion Grid.Row="1"
+                                               RegionName="UniformRegion"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

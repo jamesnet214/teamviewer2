@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Text.Json.Serialization;
+using System.Windows.Media.Imaging;
 
 namespace TeamViewer2.Core.Models
 {
-    public class MessageModel
+    public partial class MessageModel : ObservableObject
     {
         public string DataType { get; set; }
         public string Raw { get; set; }
         public UserModel UserInfo { get; set; }
+
+        [ObservableProperty]
+        private BitmapSource _snapShot;
     }
 }

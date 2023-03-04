@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using TeamViewer2.Core;
 
 namespace TeamViewer2.Users.UI.Views
 {

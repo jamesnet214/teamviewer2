@@ -1,13 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.AspNetCore.SignalR.Client;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
-using System;
-using System.Windows;
-using System.Xml.Linq;
 using TeamViewer2.Core;
+using TeamViewer2.Core.Events;
 using TeamViewer2.Core.Models;
 using TeamViewer2.Receiver;
 
@@ -27,12 +24,12 @@ namespace TeamViewer2.Forms.Local.ViewModels
         [ObservableProperty]
         private string _seat;
 
-        public LoginContentViewModel(HubManager hubConnectionManager, IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
+        public LoginContentViewModel(HubManager hubManager, IRegionManager regionManager, IContainerExtension container, IEventAggregator ea)
         {
             _regionManager = regionManager;
             _container = container;
             _ea = ea;
-            _hubManager = hubConnectionManager;
+            _hubManager = hubManager;
         }
 
         public void OnLoaded(PrismContent view)
@@ -55,9 +52,16 @@ namespace TeamViewer2.Forms.Local.ViewModels
             model.UserInfo = loginInfo;
             model.DataType = "Login";
 
-            await _hubManager.Connection.InvokeAsync("SendMessage", model);
+            IRegion region = _regionManager.Regions["MainRegion"];
+            var view = _container.Resolve<PrismContent>(ContentName.MainContent);
 
-            //_ea.GetEvent<PubSubEvent<UserModel>>().Publish(loginInfo);
+            if (!region.Views.Contains(view))
+            {
+                region.Add(view);
+            }
+            region.Activate(view);
+
+            _ea.GetEvent<LoginCompletedEvent>().Publish(model);
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using TeamViewer2.Core;
 
 namespace TeamViewer2.Users.UI.Views
 {
@@ -9,6 +7,11 @@ namespace TeamViewer2.Users.UI.Views
         static CurrentContent()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CurrentContent), new FrameworkPropertyMetadata(typeof(CurrentContent)));
+        }
+
+        public CurrentContent()
+        { 
+        
         }
     }
 }

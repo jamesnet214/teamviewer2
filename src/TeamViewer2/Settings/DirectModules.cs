@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using Prism.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.UI.Views;
 using TeamViewer2.Receiver;
+using TeamViewer2.Users.UI.Views;
 
 namespace TeamViewer2.Settings
 {
@@ -20,9 +16,6 @@ namespace TeamViewer2.Settings
         {
             IRegionManager regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("MainRegion", ContentName.LoginContent);
-            regionManager.RegisterViewWithRegion("CurrentRegion", ContentName.CurrentContent);
-            regionManager.RegisterViewWithRegion("HostRegion", ContentName.HostContent);
-            regionManager.RegisterViewWithRegion("UniformRegion", ContentName.UniformContent);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -36,6 +29,12 @@ namespace TeamViewer2.Settings
             };
 
             containerRegistry.RegisterInstance(conn);
+
+            containerRegistry.RegisterSingleton<PrismContent, LoginContent>(ContentName.LoginContent);
+            containerRegistry.RegisterInstance<PrismContent>(new MainContent(), ContentName.MainContent);
+            containerRegistry.RegisterInstance<PrismContent>(new UniformContent(), ContentName.UniformContent);
+            containerRegistry.RegisterInstance<PrismContent>(new CurrentContent(), ContentName.CurrentContent);
+            containerRegistry.RegisterInstance<PrismContent>(new HostContent(), ContentName.HostContent);
         }
     }
 }

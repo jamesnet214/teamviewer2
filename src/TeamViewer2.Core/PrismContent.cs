@@ -10,12 +10,11 @@ namespace TeamViewer2.Core
         public PrismContent()
         {
             ViewModelLocationProvider.AutoWireViewModelChanged(this, WireViewModelChanged);
-
-            Loaded += PrismContent_Loaded;
         }
 
         private void PrismContent_Loaded(object sender, RoutedEventArgs e)
         {
+            Loaded -= PrismContent_Loaded;
             if (DataContext is IViewLoadable loadableView)
             { 
                 loadableView.OnLoaded(this);
@@ -26,6 +25,10 @@ namespace TeamViewer2.Core
         {
             if (arg1 is FrameworkElement fe && arg2 is INotifyPropertyChanged vm)
             {
+                if (arg2 is IViewLoadable loadableView)
+                {
+                    Loaded += PrismContent_Loaded;
+                }
                 fe.DataContext = vm;
             }
         }
