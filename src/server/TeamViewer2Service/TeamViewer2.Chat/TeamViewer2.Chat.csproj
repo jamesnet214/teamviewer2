@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Based\TeamViewer2.Based.csproj" />
+    <ProjectReference Include="..\TeamViewer2.EntityContext\TeamViewer2.EntityContext.csproj" />
   </ItemGroup>
 
 </Project>

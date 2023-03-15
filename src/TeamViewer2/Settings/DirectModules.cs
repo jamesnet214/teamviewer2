@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TeamViewer2.Core;
 using TeamViewer2.Forms.UI.Views;
 using TeamViewer2.Receiver;
+using TeamViewer2.Sign.UI.Views;
 using TeamViewer2.Users.UI.Views;
 
 namespace TeamViewer2.Settings

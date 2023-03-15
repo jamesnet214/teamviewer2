@@ -7,21 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Remove="Themes\Views\LoginContent.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Themes\Units\" />
-    <Folder Include="UI\Units\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-    <PackageReference Include="SignalR.EasyUse.Client" Version="0.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Core\TeamViewer2.Core.csproj" />
+    <ProjectReference Include="..\TeamViewer2.LayoutSupport\TeamViewer2.LayoutSupport.csproj" />
     <ProjectReference Include="..\TeamViewer2.Receiver\TeamViewer2.Receiver.csproj" />
   </ItemGroup>
 

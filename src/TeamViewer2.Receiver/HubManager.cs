@@ -16,7 +16,8 @@ namespace TeamViewer2.Receiver
         {
             HubManager hubManager = new();
             hubManager.Connection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:32767/chathub")
+                .WithUrl("https://localhost:7157/chathub")
+                //.WithUrl("https://teamviewerwebserver.azurewebsites.net/chathub")
                 .Build();
 
             return hubManager;

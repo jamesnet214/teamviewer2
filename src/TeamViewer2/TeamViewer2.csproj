@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TeamViewer2.Forms\TeamViewer2.Forms.csproj" />
     <ProjectReference Include="..\TeamViewer2.Receiver\TeamViewer2.Receiver.csproj" />
+    <ProjectReference Include="..\TeamViewer2.Sign\TeamViewer2.Sign.csproj" />
     <ProjectReference Include="..\TeamViewer2.Users\TeamViewer2.Users.csproj" />
   </ItemGroup>
 

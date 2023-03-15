@@ -8,7 +8,7 @@ using TeamViewer2.Core.Events;
 using TeamViewer2.Core.Models;
 using TeamViewer2.Receiver;
 
-namespace TeamViewer2.Forms.Local.ViewModels
+namespace TeamViewer2.Sign.Local.ViewModels
 {
     public partial class LoginContentViewModel : ObservableObject, IViewLoadable
     {

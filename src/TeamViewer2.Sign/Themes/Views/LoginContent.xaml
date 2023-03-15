@@ -1,8 +1,8 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:based="clr-namespace:TeamViewer2.Core;assembly=TeamViewer2.Core"
-    xmlns:views="clr-namespace:TeamViewer2.Forms.UI.Views">
+    xmlns:views="clr-namespace:TeamViewer2.Sign.UI.Views"
+    xmlns:ctrls="clr-namespace:TeamViewer2.LayoutSupport.UI.Units;assembly=TeamViewer2.LayoutSupport">
 
     <Style TargetType="{x:Type views:LoginContent}">
         <Setter Property="Background" Value="#AA000000"/>
@@ -32,27 +32,19 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Grid.Row="0" 
-                                       Grid.Column="0" 
-                                       Content="Name" 
-                                       Margin="1"/>
-                                <TextBox Grid.Row="0" 
-                                         Grid.Column="1" 
-                                         Text="{Binding Name}" 
-                                         Margin="1"
-                                         Padding="4 2 4 2"
-                                         VerticalContentAlignment="Center"/>
+                                <ctrls:PlaceholderTextBox Grid.Row="0" 
+                                                          Grid.Column="1" 
+                                                          Text="{Binding Name}"
+                                                          Margin="1"
+                                                          Padding="4 2 4 2"
+                                                          PlaceholderText="이메일 입력"/>
 
-                                <Label Grid.Row="1" 
-                                       Grid.Column="0" 
-                                       Content="ID" 
-                                       Margin="1"/>
-                                <TextBox Grid.Row="1" 
-                                         Grid.Column="1" 
-                                         Text="{Binding Id}" 
-                                         Margin="1"
-                                         Padding="4 2 4 2"
-                                         VerticalContentAlignment="Center"/>
+
+                                <PasswordBox Grid.Row="1" 
+                                                          Grid.Column="1" 
+                                                          Margin="1"
+                                                          Padding="4 2 4 2"/>
+
 
                                 <Label Grid.Row="2" 
                                        Grid.Column="0" 

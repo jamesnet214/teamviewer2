@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Text.Json.Serialization;
 using System.Windows.Media.Imaging;
 
 namespace TeamViewer2.Core.Models

@@ -14,7 +14,7 @@ namespace TeamViewer2.Server
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://localhost:32767/")
+                //.UseUrls("http://localhost:443/")
                 .UseStartup<App>();
         }
     }

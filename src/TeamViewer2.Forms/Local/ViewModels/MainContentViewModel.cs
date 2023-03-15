@@ -6,8 +6,6 @@ using Prism.Ioc;
 using Prism.Regions;
 using System.IO;
 using System;
-using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TeamViewer2.Core;
 using TeamViewer2.Core.Events;
