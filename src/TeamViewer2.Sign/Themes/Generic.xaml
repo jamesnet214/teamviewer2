@@ -2,6 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/TeamViewer2.Sign;component/Themes/Units/LoginButton.xaml"/>
+        <ResourceDictionary Source="/TeamViewer2.Sign;component/Themes/Views/RegisterContent.xaml"/>
         <ResourceDictionary Source="/TeamViewer2.Sign;component/Themes/Views/LoginContent.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

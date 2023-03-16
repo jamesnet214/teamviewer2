@@ -18,9 +18,13 @@ namespace TeamViewer2.Sign.Local.ViewModels
         private readonly IEventAggregator _ea;
 
         [ObservableProperty]
-        private string _id;
+        [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+        private string _password;
+
         [ObservableProperty]
-        private string _name;
+        [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
+        private string _email;
+
         [ObservableProperty]
         private string _seat;
 
@@ -37,14 +41,19 @@ namespace TeamViewer2.Sign.Local.ViewModels
             _hubManager.Start(_ea);
         }
 
-        [RelayCommand]
-        private async void Login()
+        private bool CanLogin()
+        {
+            return !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
+        }
+
+        [RelayCommand(CanExecute = nameof(CanLogin))]
+        private void Login()
         {
             UserModel loginInfo = new()
             {
-                Id = Id,
-                Name = Name,
-                Seat = int.Parse(Seat),
+                Id = Password,
+                Name = Email,
+                Seat = 0,
                 GUID = _hubManager.Connection.ConnectionId
             };
 

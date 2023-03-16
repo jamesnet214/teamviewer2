@@ -13,6 +13,8 @@ namespace TeamViewer2.EntityContext.Entites
         public string FullName { get; set; }
         public string Nickname { get; set; }
         public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string EmailConfirmationToken { get; set; }
         public string Password { get; set; }
         public byte[] Thumbnail { get; set; }
         public DateTime CreatedAt { get; set; }

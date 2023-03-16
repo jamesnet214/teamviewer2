@@ -51,11 +51,11 @@
         <Setter Property="Command" Value="{Binding CreateCommand}"/>
     </Style>
 
-    <Style TargetType="{x:Type views:LoginContent}">
+    <Style TargetType="{x:Type views:RegisterContent}">
         <Setter Property="Background" Value="#AA000000"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:LoginContent}">
+                <ControlTemplate TargetType="{x:Type views:RegisterContent}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
